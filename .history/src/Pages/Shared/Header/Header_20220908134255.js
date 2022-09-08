@@ -3,7 +3,6 @@ import { Button, Container, Nav, Navbar } from 'react-bootstrap';
 // import logo from '../../../images/logo.png'
 import { Link } from 'react-router-dom';
 import useAuth from '../../Login/hooks/useAuth';
-import { HashLink } from 'react-router-hash-link';
 
 const Header = () => {
     const {user, logout} = useAuth();
@@ -17,20 +16,17 @@ const Header = () => {
                     </Navbar.Brand>
                     <Navbar.Toggle />
                     <Navbar.Collapse className="justify-content-end">
-                        <Nav.Link as={HashLink} to="/home#home" className='mx-3'>Home</Nav.Link>
-                        <Nav.Link as={HashLink} to="/home#services" className='mx-3'>Services</Nav.Link>
-                        <Nav.Link as={HashLink} to="/home#experts" className='mx-3'>Experts</Nav.Link>
-
+                        <Nav.Link as={Link} to="/home#home" className='mx-3'>Home</Nav.Link>
+                        <Nav.Link as={Link} to="/home#services" className='mx-3'>Services</Nav.Link>
+                        <Nav.Link as={Link} to="/home#experts" className='mx-3'>Experts</Nav.Link>
                         {user?.email ?
-                            <div className="">
-                                <Navbar.Text className='mx-4'>
-                                    Signed in as: {user?.displayName}
-                                </Navbar.Text>
-                                <Button onClick={logout} variant='light'>Logout</Button> 
-                            </div>
+                            <Button onClick={logout} variant='light'>Logout</Button> 
                             :
-                            <Nav.Link as={Link} to="/login" className='mx-5'><Button variant='light'>Login</Button></Nav.Link>
+                            <Nav.Link as={Link} to="/login" className='mx-5'>Login</Nav.Link>
                         }
+                        <Navbar.Text className='ps-3'>
+                            Signed in as: <a href="#login">{user?.displayName}</a>
+                        </Navbar.Text>
                     </Navbar.Collapse>
                 </Container>
             </Navbar>

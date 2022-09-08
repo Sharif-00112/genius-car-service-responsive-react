@@ -19,25 +19,22 @@ const useFirebase = () =>{
     const auth = getAuth();
  
     const signInUsingGoogle = () =>{
-      setIsLoading(true);
-      signInWithPopup(auth, googleProvider)
-      .then((result) => {
-          // This gives you a Google Access Token. You can use it to access the Google API.
-          // const credential = GoogleAuthProvider.credentialFromResult(result);
-          // const token = credential.accessToken;
-          // The signed-in user info.
-          setUser(result.user);
-      }).catch((error) => {
-          // Handle Errors here.
-          setError(error.code);
-          setError(error.message);
-          // The email of the user's account used.
-          setError(error.customData.email);
-          // The AuthCredential type that was used.
-          setError(GoogleAuthProvider.credentialFromError(error));
-      }).finally(() =>{
-        setIsLoading(false);
-      });
+        signInWithPopup(auth, googleProvider)
+        .then((result) => {
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            // const credential = GoogleAuthProvider.credentialFromResult(result);
+            // const token = credential.accessToken;
+            // The signed-in user info.
+            setUser(result.user);
+        }).catch((error) => {
+            // Handle Errors here.
+            setError(error.code);
+            setError(error.message);
+            // The email of the user's account used.
+            setError(error.customData.email);
+            // The AuthCredential type that was used.
+            setError(GoogleAuthProvider.credentialFromError(error));
+        });
     }
 
     const signInUsingGithub = () =>{
@@ -203,28 +200,26 @@ const useFirebase = () =>{
     useEffect(()=>{
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
-              // User is signed in
+              // User is signed in, see docs for a list of available properties
+              // https://firebase.google.com/docs/reference/js/firebase.User
+              // console.log('inside state change', user);
               setUser(user);
             } else {
               // User is signed out
               setUser({});
             }
-            setIsLoading(false);
           });
           return () => unsubscribe;
     },[auth]);
 
     const logout = () =>{
-      setIsLoading(true);
-      signOut(auth)
-      .then(() => {
-          // Sign-out successful.
-          setUser({});
-        }).catch((error) => {
-          setError(error);
-        }).finally(()=>{
-          setIsLoading(false);
-        });
+        signOut(auth)
+        .then(() => {
+            // Sign-out successful.
+            setUser({});
+          }).catch((error) => {
+            setError(error);
+          });
     }
 
     return {
@@ -245,8 +240,7 @@ const useFirebase = () =>{
       setUserName,
       logout,
       user, 
-      error,
-      isLoading
+      error
     };
 }
 

@@ -215,16 +215,15 @@ const useFirebase = () =>{
     },[auth]);
 
     const logout = () =>{
-      setIsLoading(true);
-      signOut(auth)
-      .then(() => {
-          // Sign-out successful.
-          setUser({});
-        }).catch((error) => {
-          setError(error);
-        }).finally(()=>{
-          setIsLoading(false);
-        });
+        signOut(auth)
+        .then(() => {
+            // Sign-out successful.
+            setUser({});
+          }).catch((error) => {
+            setError(error);
+          }).finally(()=>{
+            setIsLoading(false);
+          });
     }
 
     return {
@@ -245,8 +244,7 @@ const useFirebase = () =>{
       setUserName,
       logout,
       user, 
-      error,
-      isLoading
+      error
     };
 }
 

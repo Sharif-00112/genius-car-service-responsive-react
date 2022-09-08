@@ -35,8 +35,6 @@ const useFirebase = () =>{
           setError(error.customData.email);
           // The AuthCredential type that was used.
           setError(GoogleAuthProvider.credentialFromError(error));
-      }).finally(() =>{
-        setIsLoading(false);
       });
     }
 
@@ -203,28 +201,26 @@ const useFirebase = () =>{
     useEffect(()=>{
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
-              // User is signed in
+              // User is signed in, see docs for a list of available properties
+              // https://firebase.google.com/docs/reference/js/firebase.User
+              // console.log('inside state change', user);
               setUser(user);
             } else {
               // User is signed out
               setUser({});
             }
-            setIsLoading(false);
           });
           return () => unsubscribe;
     },[auth]);
 
     const logout = () =>{
-      setIsLoading(true);
-      signOut(auth)
-      .then(() => {
-          // Sign-out successful.
-          setUser({});
-        }).catch((error) => {
-          setError(error);
-        }).finally(()=>{
-          setIsLoading(false);
-        });
+        signOut(auth)
+        .then(() => {
+            // Sign-out successful.
+            setUser({});
+          }).catch((error) => {
+            setError(error);
+          });
     }
 
     return {
@@ -245,8 +241,7 @@ const useFirebase = () =>{
       setUserName,
       logout,
       user, 
-      error,
-      isLoading
+      error
     };
 }
 

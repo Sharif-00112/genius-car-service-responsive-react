@@ -1,5 +1,5 @@
 import { useState } from "react";
-import initializeAuthentication from '../Firebase/firebase.initialize'; 
+import initializeAuthentication from '../Firebase/firebase.initialize';
 import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut, GithubAuthProvider, FacebookAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, updatePassword, sendEmailVerification, updateProfile, } from "firebase/auth";
 import { useEffect } from "react";
 
@@ -11,7 +11,6 @@ const useFirebase = () =>{
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [isLoading, setIsLoading] = useState(true);
 
     const googleProvider = new GoogleAuthProvider();
     const gitProvider = new GithubAuthProvider();
@@ -19,25 +18,22 @@ const useFirebase = () =>{
     const auth = getAuth();
  
     const signInUsingGoogle = () =>{
-      setIsLoading(true);
-      signInWithPopup(auth, googleProvider)
-      .then((result) => {
-          // This gives you a Google Access Token. You can use it to access the Google API.
-          // const credential = GoogleAuthProvider.credentialFromResult(result);
-          // const token = credential.accessToken;
-          // The signed-in user info.
-          setUser(result.user);
-      }).catch((error) => {
-          // Handle Errors here.
-          setError(error.code);
-          setError(error.message);
-          // The email of the user's account used.
-          setError(error.customData.email);
-          // The AuthCredential type that was used.
-          setError(GoogleAuthProvider.credentialFromError(error));
-      }).finally(() =>{
-        setIsLoading(false);
-      });
+        signInWithPopup(auth, googleProvider)
+        .then((result) => {
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            // const credential = GoogleAuthProvider.credentialFromResult(result);
+            // const token = credential.accessToken;
+            // The signed-in user info.
+            setUser(result.user);
+        }).catch((error) => {
+            // Handle Errors here.
+            setError(error.code);
+            setError(error.message);
+            // The email of the user's account used.
+            setError(error.customData.email);
+            // The AuthCredential type that was used.
+            setError(GoogleAuthProvider.credentialFromError(error));
+        });
     }
 
     const signInUsingGithub = () =>{
@@ -189,42 +185,39 @@ const useFirebase = () =>{
       });
     }
 
-    const verifyEmail = () =>{
-      sendEmailVerification(auth.currentUser)
-      .then(() => {
-        // Email verification sent!
-      }).catch((error) => {
-        setError(error.code);
-        setError(error.message);
-      });
-    }
+  const verifyEmail = () =>{
+    sendEmailVerification(auth.currentUser)
+    .then(() => {
+      // Email verification sent!
+    }).catch((error) => {
+      setError(error.code);
+      setError(error.message);
+    });
+  }
 
-    //observe user login change
     useEffect(()=>{
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
-              // User is signed in
+              // User is signed in, see docs for a list of available properties
+              // https://firebase.google.com/docs/reference/js/firebase.User
+              // console.log('inside state change', user);
               setUser(user);
             } else {
               // User is signed out
               setUser({});
             }
-            setIsLoading(false);
           });
-          return () => unsubscribe;
+          return unsubscribe;
     },[auth]);
 
     const logout = () =>{
-      setIsLoading(true);
-      signOut(auth)
-      .then(() => {
-          // Sign-out successful.
-          setUser({});
-        }).catch((error) => {
-          setError(error);
-        }).finally(()=>{
-          setIsLoading(false);
-        });
+        signOut(auth)
+        .then(() => {
+            // Sign-out successful.
+            setUser({});
+          }).catch((error) => {
+            setError(error);
+          });
     }
 
     return {
@@ -245,8 +238,7 @@ const useFirebase = () =>{
       setUserName,
       logout,
       user, 
-      error,
-      isLoading
+      error
     };
 }
 

@@ -5,7 +5,7 @@ import useAuth from '../../Login/hooks/useAuth';
 const Login = () => {
     //destructuring hooks
     const {signInUsingGoogle, signInUsingGithub, signInUsingFacebook, signInUsingTwitter, user, error, handleLoginSubmitBtn, handleEmailChange, handlePasswordChange } = useAuth();
-     
+    
     return (
         <div>
             { !user.email ? <h3 className='pt-5'>User Login</h3> 

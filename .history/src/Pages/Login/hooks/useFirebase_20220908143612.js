@@ -245,8 +245,7 @@ const useFirebase = () =>{
       setUserName,
       logout,
       user, 
-      error,
-      isLoading
+      error
     };
 }
 

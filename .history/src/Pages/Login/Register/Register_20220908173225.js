@@ -45,13 +45,13 @@ const Register = () => {
                     </div>
                     </div>
                 </div>
-                <button type="submit" className="btn btn-success">Register</button>
+                <button type="submit" className="btn btn-secondary">Register</button>
                 </form>
 
             <br />
-            {/* <button className='btn btn-success p-2 m-3'><Link className='text-decoration-none text-white' to="/login"><u>Already registered? Click to Login!</u></Link></button> */}
+            <button className='btn btn-success p-2 m-3'><Link className='text-decoration-none text-white' to="/login"><u>Already registered? Click to Login!</u></Link></button>
 
-            <Link className='text-decoration-none text-white m-2' to="/login"><u><button className='btn btn-secondary p-2 m-3'>Already registered? Click to Login!</button></u></Link>
+            <Link className='text-decoration-none text-white m-2' to="/login"><u><button className='btn btn-success p-2 m-3'>Already registered? Click to Login!</button></u></Link>
 
         </div>
     );

@@ -9,7 +9,7 @@ import Booking from './Pages/Booking/Booking/Booking';
 import Login from './Pages/Login/Login/Login';
 import Register from './Pages/Login/Register/Register';
 import Header from './Pages/Shared/Header/Header';
- 
+
 function App() {
   return (
     <div className="App">

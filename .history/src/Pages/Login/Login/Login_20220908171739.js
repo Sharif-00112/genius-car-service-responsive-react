@@ -38,9 +38,7 @@ const Login = () => {
                         </div>
                         <button type="submit" className="btn btn-secondary">Login</button>
                     </form>
-                    {/* <button className='btn btn-secondary p-2 mt-3'><Link className='text-decoration-none text-white' to="/forgotpassword"><u>Forgot Password?</u></Link></button> */}
-                    <br />
-                    <Link className='text-decoration-none text-white p-2 mt-5' to="/forgotpassword"><u><button className='btn btn-secondary'>Forgot Password?</button></u></Link>
+                    <button className='btn btn-secondary p-2 mt-3'><Link className='text-decoration-none text-white' to="/forgotpassword"><u>Forgot Password?</u></Link></button>
 
                     
                     <p className='m-4'>Or</p>
@@ -57,9 +55,7 @@ const Login = () => {
                     <h5>{error}</h5>
                     <br /> 
 
-                    {/* <button className='btn btn-success p-2 m-3'><Link className='text-decoration-none text-white' to="/register"><u>New User? Click to Register!</u></Link></button> */}
-
-                    <Link className='text-decoration-none text-white m-2' to="/register"><u><button className='btn btn-secondary p-2 m-3'>New User? Click to Register!</button></u></Link>
+                    <button className='btn btn-success p-2 m-3'><Link className='text-decoration-none text-white' to="/register"><u>New User? Click to Register!</u></Link></button>
                 </div>
                 :
                 <div className="mb-5">
@@ -68,9 +64,9 @@ const Login = () => {
                     <br />
                     {/* <button className='btn btn-secondary p-2 mt-3'><Link className='text-decoration-none text-white' to="/completeprofile"><u>Complete Profile</u></Link></button> */}
 
-                    <Link className='text-decoration-none text-white m-2' to="/completeprofile"><u><button className='btn btn-secondary'>Complete Profile</button></u></Link>
+                    <Link className='text-decoration-none text-white m-2' to="/completeprofile"><u><button onClick={logout} className='btn btn-secondary'>Complete Profile</button></u></Link>
 
-                    <Link className='text-decoration-none text-white m-2' to="/login"><u><button onClick={logout} className='btn btn-danger'>Logout</button></u></Link>
+                    <Link className='text-decoration-none text-white m-2' to="/"><u><button onClick={logout} className='btn btn-secondary'>Logout</button></u></Link>
                 </div>
             }
 

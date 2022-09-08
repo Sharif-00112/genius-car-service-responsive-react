@@ -70,7 +70,7 @@ const Login = () => {
 
                     <Link className='text-decoration-none text-white m-2' to="/completeprofile"><u><button className='btn btn-secondary'>Complete Profile</button></u></Link>
 
-                    <Link className='text-decoration-none text-white m-2' to="/login"><u><button onClick={logout} className='btn btn-danger'>Logout</button></u></Link>
+                    <Link className='text-decoration-none text-white m-2' to="/login"><u><button onClick={logout} className='btn btn-secondary'>Logout</button></u></Link>
                 </div>
             }
 

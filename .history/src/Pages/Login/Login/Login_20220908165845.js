@@ -5,7 +5,7 @@ import useAuth from '../../../hooks/useAuth';
 
 const Login = () => {
     //destructuring hooks
-    const {signInUsingGoogle, signInUsingGithub, signInUsingFacebook, signInUsingTwitter, user, error, handleLoginSubmitBtn, handleEmailChange, handlePasswordChange, logout } = useAuth();
+    const {signInUsingGoogle, signInUsingGithub, signInUsingFacebook, signInUsingTwitter, user, error, handleLoginSubmitBtn, handleEmailChange, handlePasswordChange } = useAuth();
      
     return (
         <div>
@@ -22,13 +22,13 @@ const Login = () => {
                 <div className="">
                     <form className='w-75 mx-auto' onSubmit={handleLoginSubmitBtn}>
                         <div className="row mb-3">
-                            <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">Email</label>
+                            <label for="inputEmail3" className="col-sm-2 col-form-label">Email</label>
                             <div className="col-sm-10">
                             <input onChange={handleEmailChange}  type="email" className="form-control" id="inputEmail3" placeholder='Enter your email' required/>
                             </div>
                         </div>
                         <div className="row mb-3">
-                            <label htmlFor="inputPassword3" className="col-sm-2 col-form-label">Password</label>
+                            <label for="inputPassword3" className="col-sm-2 col-form-label">Password</label>
                             <div className="col-sm-10">
                             <input onChange={handlePasswordChange} type="password" className="form-control" id="inputPassword3" placeholder='Enter your password' required/>
                             </div>
@@ -38,9 +38,7 @@ const Login = () => {
                         </div>
                         <button type="submit" className="btn btn-secondary">Login</button>
                     </form>
-                    {/* <button className='btn btn-secondary p-2 mt-3'><Link className='text-decoration-none text-white' to="/forgotpassword"><u>Forgot Password?</u></Link></button> */}
-                    <br />
-                    <Link className='text-decoration-none text-white p-2 mt-5' to="/forgotpassword"><u><button className='btn btn-secondary'>Forgot Password?</button></u></Link>
+                    <button className='btn btn-secondary p-2 mt-3'><Link className='text-decoration-none text-white' to="/forgotpassword"><u>Forgot Password?</u></Link></button>
 
                     
                     <p className='m-4'>Or</p>
@@ -57,20 +55,14 @@ const Login = () => {
                     <h5>{error}</h5>
                     <br /> 
 
-                    {/* <button className='btn btn-success p-2 m-3'><Link className='text-decoration-none text-white' to="/register"><u>New User? Click to Register!</u></Link></button> */}
-
-                    <Link className='text-decoration-none text-white m-2' to="/register"><u><button className='btn btn-secondary p-2 m-3'>New User? Click to Register!</button></u></Link>
+                    <button className='btn btn-success p-2 m-3'><Link className='text-decoration-none text-white' to="/register"><u>New User? Click to Register!</u></Link></button>
                 </div>
                 :
                 <div className="mb-5">
                     <p>Email: {user.email}</p>
                     <img src={user.photoURL} alt="" />
                     <br />
-                    {/* <button className='btn btn-secondary p-2 mt-3'><Link className='text-decoration-none text-white' to="/completeprofile"><u>Complete Profile</u></Link></button> */}
-
-                    <Link className='text-decoration-none text-white m-2' to="/completeprofile"><u><button className='btn btn-secondary'>Complete Profile</button></u></Link>
-
-                    <Link className='text-decoration-none text-white m-2' to="/login"><u><button onClick={logout} className='btn btn-danger'>Logout</button></u></Link>
+                    <button className='btn btn-secondary p-2 mt-3'><Link className='text-decoration-none text-white' to="/completeprofile"><u>Complete Profile</u></Link></button>
                 </div>
             }
 

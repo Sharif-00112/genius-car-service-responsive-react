@@ -65,7 +65,7 @@ const Login = () => {
                 <div className="mb-5">
                     <p>Email: {user.email}</p>
                     <img src={user.photoURL} alt="" />
-                    <br /> <br /> <br />
+                    <br /> <br />
                     {/* <button className='btn btn-secondary p-2 mt-3'><Link className='text-decoration-none text-white' to="/completeprofile"><u>Complete Profile</u></Link></button> */}
 
                     <Link className='text-decoration-none text-white m-2' to="/completeprofile"><u><button className='btn btn-secondary'>Complete Profile</button></u></Link>

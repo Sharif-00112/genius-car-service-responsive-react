@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Container, Nav, Navbar } from 'react-bootstrap';
-// import logo from '../../../images/logo.png'
+import logo from '../../../images/logo.png'
 import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 import useAuth from '../../../hooks/useAuth';
@@ -12,8 +12,8 @@ const Header = () => {
             <Navbar collapseOnSelect expand="lg" bg="secondary" variant="dark" sticky='top'>
                 <Container>
                     <Navbar.Brand href="/home">
-                        {/* <img src={logo} height="30" alt="" /> */}
-                        Car Genius
+                        <img src={logo} height="30" alt="" />
+                        {/* Car Genius */}
                     </Navbar.Brand>
                     <Navbar.Toggle />
                     <Navbar.Collapse className="justify-content-end">
@@ -23,8 +23,8 @@ const Header = () => {
 
                         {user?.email ?
                             <div className="">
-                                <Navbar.Text className='mx-4 text-info'>
-                                    Signed in as: {user?.displayName}
+                                <Navbar.Text className='mx-4'>
+                                    Signed in as: <Nav.Link as={Link} to="/login" className='d-inline text-info'>{user?.displayName}</Nav.Link>
                                 </Navbar.Text>
                                 <Button onClick={logout} variant='light'>Logout</Button> 
                             </div>

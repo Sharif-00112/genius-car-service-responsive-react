@@ -8,7 +8,7 @@ const Login = () => {
     //destructuring hooks
     const {signInUsingGoogle, signInUsingGithub, signInUsingFacebook, signInUsingTwitter, user, error, handleLoginSubmitBtn, handleEmailChange, handlePasswordChange, logout } = useAuth();
 
-    useTitle("Login");
+    useTitle("New Title");
      
     return (
         <div>

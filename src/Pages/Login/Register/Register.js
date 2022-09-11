@@ -1,10 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
+import { useTitle } from '../../../hooks/useTitle';
 // import useAuth from '../../../hooks/useAuth';
 
 const Register = () => {
     const { error, handleRegisterSubmitBtn, handleEmailChange, handlePasswordChange } = useAuth();
+
+    useTitle("Register");
+
 
     return (
         <div>
